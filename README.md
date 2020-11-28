@@ -15,12 +15,12 @@ Resultados de ejecución
 ```
 Hora entrada 12:35
 Hora salida  19:21
-Tiempo total  7:46 horas
+Tiempo total  6:46 horas
 Costo estacionamiento $73.5
 
 Hora entrada 21:55
 Hora salida  23:40
-Tiempo total  2:45 horas
+Tiempo total  1:45 horas
 Costo estacionamiento $50.0
 
 Hora entrada 13:10

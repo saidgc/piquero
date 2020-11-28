@@ -1,7 +1,7 @@
 """
 1. Chequeador de tiempo de entradas y salidas de auto en estacionamiento:
 Tarifa por hora: $10 pesos, en horario diurno de 9.00 a 21.00 hrs
-Tarifa por noche: $50 pesos, la noche se considera 21.00 a 9.00 hrs
+Tarifa por noche: $tarifa_noche pesos, la noche se considera 21.00 a 9.00 hrs
 Tolerancia de 15 minutos, si entra y sale en ese periodo no debe pagar.
 
 Condiciones especiales:
@@ -45,12 +45,12 @@ def checador(entrada, salida):
     if hora_entrada < hora_salida:
         if hora_entrada < 9:
             if hora_salida < 9:
-                return 50, minutos_total
+                return tarifa_noche, minutos_total
 
             if hora_salida < 21:
-                cobro = 50
-                cobro += (minuto_salida / 60) * 10
-                cobro += (hora_salida - 8) * 10
+                cobro = tarifa_noche
+                cobro += (minuto_salida / 60)  * tarifa_dia
+                cobro += (hora_salida - 8)  * tarifa_dia
                 return cobro, minutos_total
 
             if hora_salida >= 21:
@@ -58,52 +58,52 @@ def checador(entrada, salida):
 
         if hora_entrada < 21:
             if hora_salida < 21:
-                cobro = (minuto_salida / 60) * 10
-                cobro += (hora_salida - hora_entrada) * 10
+                cobro = (minuto_salida / 60)  * tarifa_dia
+                cobro += (hora_salida - hora_entrada)  * tarifa_dia
                 return cobro, minutos_total
 
             if hora_salida >= 21:
-                if hora_entrada == 20 and minuto_entrada >= 50:
-                    return 50, minutos_total
-                cobro = (21 - hora_entrada) * 10
-                cobro += 50
+                if hora_entrada == 20 and minuto_entrada >= tarifa_noche:
+                    return tarifa_noche, minutos_total
+                cobro = (21 - hora_entrada)  * tarifa_dia
+                cobro += tarifa_noche
                 return cobro, minutos_total
 
         if hora_salida >= 21:
-            return 50, minutos_total
+            return tarifa_noche, minutos_total
 
     if hora_entrada == hora_salida:
         if minuto_entrada < minuto_salida:
             if hora_entrada < 9:
                 if hora_salida < 9:
-                    return 50, minutos_total
+                    return tarifa_noche, minutos_total
 
                 if hora_salida < 21:
-                    if hora_entrada == 20 and minuto_entrada >= 50:
-                        return 50, minutos_total
-                    cobro = (minuto_salida / 60) * 10
-                    cobro += (hora_salida - 9) * 10
+                    if hora_entrada == 20 and minuto_entrada >= tarifa_noche:
+                        return tarifa_noche, minutos_total
+                    cobro = (minuto_salida / 60)  * tarifa_dia
+                    cobro += (hora_salida - 9)  * tarifa_dia
                     return cobro, minutos_total
 
             if hora_entrada < 21:
                 if hora_salida < 21:
-                    if hora_entrada == 20 and minuto_entrada >= 50:
-                        return 50, minutos_total
-                    cobro = (minuto_salida / 60) * 10
-                    cobro += (hora_salida - hora_entrada) * 10
+                    if hora_entrada == 20 and minuto_entrada >= tarifa_noche:
+                        return tarifa_noche, minutos_total
+                    cobro = (minuto_salida / 60)  * tarifa_dia
+                    cobro += (hora_salida - hora_entrada)  * tarifa_dia
                     return cobro, minutos_total
 
             if hora_salida >= 21:
-                return 50, minutos_total
+                return tarifa_noche, minutos_total
 
         if minuto_entrada > minuto_salida:
             if hora_entrada < 9:
                 return 230, minutos_total
 
             if hora_entrada < 21:
-                cobro = (minuto_salida / 60) * 10
-                cobro += (26 - hora_entrada) * 10
-                cobro += (hora_salida - 9) * 10
+                cobro = (minuto_salida / 60)  * tarifa_dia
+                cobro += (26 - hora_entrada)  * tarifa_dia
+                cobro += (hora_salida - 9)  * tarifa_dia
                 return cobro, minutos_total
 
             if hora_entrada >= 21:
@@ -115,24 +115,24 @@ def checador(entrada, salida):
 
         if hora_entrada < 21:
             if hora_salida < 9:
-                if hora_entrada == 20 and minuto_entrada >= 50:
-                    return 50, minutos_total
-                cobro = (26 - hora_entrada) * 10
+                if hora_entrada == 20 and minuto_entrada >= tarifa_noche:
+                    return tarifa_noche, minutos_total
+                cobro = (26 - hora_entrada)  * tarifa_dia
                 return cobro, minutos_total
 
             if hora_salida < 21:
-                cobro = (minuto_salida / 60) * 10
-                cobro += (26 - hora_entrada) * 10
-                cobro += (hora_salida - 9) * 10
+                cobro = (minuto_salida / 60)  * tarifa_dia
+                cobro += (26 - hora_entrada)  * tarifa_dia
+                cobro += (hora_salida - 9)  * tarifa_dia
                 return cobro, minutos_total
 
         if hora_entrada >= 21:
             if hora_salida < 9:
-                return 50, minutos_total
+                return tarifa_noche, minutos_total
 
             if hora_salida < 21:
-                cobro = (minuto_salida / 60) * 10
-                cobro += (hora_salida - 3) * 10
+                cobro = (minuto_salida / 60)  * tarifa_dia
+                cobro += (hora_salida - 3)  * tarifa_dia
                 return cobro, minutos_total
 
             if hora_salida >= 21:

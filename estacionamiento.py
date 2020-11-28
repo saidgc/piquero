@@ -140,19 +140,18 @@ def checador(entrada, salida):
 
     return -1, minutos_total
 
+
 def calcular(entrada, salida):
     res = checador(entrada, salida)
     print('Hora entrada', entrada)
     print('Hora salida ', salida)
-    print('Tiempo total %2.0f:%2d horas' % (math.floor(res[1] / 60), res[1] % 60))
+    print('Tiempo total %2.0f:%2d horas' %
+          (math.floor(res[1] / 60), res[1] % 60))
     print('Costo estacionamiento $%.1f' % res[0], end='\n\n')
+
 
 if __name__ == "__main__":
     calcular('12:35', '19:21')
     calcular('21:55', '23:40')
     calcular('13:10', '11:31')
     calcular('10:51', '10:59')
-    
-    calcular('13:00', '18:59')
-    
-    
